@@ -24,7 +24,7 @@
     serif;
   --font-size-base: 1.225rem;
   --line-height-base: 1.65;
-  --measure: 36rem; /* ~64–66 characters at this size */
+  --measure: 45rem; /* ~80 characters at this size */
 
   /* Spacing */
   --space-page-y: clamp(2rem, 5vw, 4.5rem);
@@ -147,8 +147,7 @@ h3 {
 
 .essay-body p {
   margin: 0 0 1.1em;
-  hyphens: auto;
-  -webkit-hyphens: auto;
+  overflow-wrap: break-word;
 }
 
 .essay-body p + p {

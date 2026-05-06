@@ -19,7 +19,7 @@ Both prioritize the writing over the interface. The site exists to deliver text.
 
 - **One typeface throughout: EB Garamond.** Italic and small caps from the same family. No second face.
 - **Warm paper-and-ink palette.** Cream paper (`#faf7f0`), dark ink (`#1f1a14`), with a muted oxblood (`#6b2737`) for accents and links. Light only — no dark mode. The palette is the page's body, not its decoration.
-- **Single-column body at roughly 65-character measure.** Set in the CSS as `--measure: 36rem`. Long lines and side rails are absent by design.
+- **Single-column body at roughly 80-character measure.** Set in the CSS as `--measure: 45rem`. Long lines and side rails are absent by design.
 - **Drop cap on the first paragraph** of each essay (`initial-letter: 2.55`). It marks the entry into the text and nothing more.
 - **All-caps small labels** for section markers and metadata (dates, "Notes" heading, navigation cues). Letter-spaced, faint, reserved.
 - **Asterism (⁂)** for section breaks within an essay, not horizontal rules. The mark is older than the rule and quieter.
