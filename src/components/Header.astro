@@ -1,0 +1,109 @@
+---
+const { showTagline = false } = Astro.props;
+const path = Astro.url.pathname;
+const isHome = path === '/' || path === '';
+---
+
+<header class="site-header">
+  <div class="masthead">
+    {
+      isHome ? (
+        <h1 class="wordmark">Concepts &amp; Ascents</h1>
+      ) : (
+        <a href="/" class="wordmark-link">
+          <span class="wordmark wordmark--small">Concepts &amp; Ascents</span>
+        </a>
+      )
+    }
+    {
+      showTagline && (
+        <p class="tagline">Essays on metaphysics and the contemplative life</p>
+      )
+    }
+  </div>
+
+  <nav class="site-nav" aria-label="Primary">
+    <a href="/" class:list={[{ current: isHome }]}>Essays</a>
+    <span class="dot" aria-hidden="true">·</span>
+    <a
+      href="/about/"
+      class:list={[{ current: path.startsWith('/about') }]}>About</a
+    >
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    text-align: center;
+    padding: 0 0 2.5em;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 3em;
+  }
+
+  .masthead {
+    margin-bottom: 1.5em;
+  }
+
+  .wordmark {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    letter-spacing: -0.005em;
+    margin: 0;
+    line-height: 1.1;
+    color: var(--ink);
+    font-feature-settings: 'liga', 'dlig';
+  }
+
+  .wordmark--small {
+    font-size: 1.25rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+  }
+
+  .wordmark-link {
+    color: var(--ink);
+    text-decoration: none;
+    border: none;
+  }
+
+  .wordmark-link:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .tagline {
+    font-style: italic;
+    color: var(--ink-soft);
+    margin: 0.6em 0 0;
+    font-size: 1.05rem;
+    font-weight: 400;
+    line-height: 1.4;
+  }
+
+  .site-nav {
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.2em;
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+  }
+
+  .site-nav a {
+    color: var(--ink-soft);
+    text-decoration: none;
+    padding: 0 0.3em;
+  }
+
+  .site-nav a:hover {
+    color: var(--accent);
+  }
+
+  .site-nav a.current {
+    color: var(--ink);
+  }
+
+  .site-nav .dot {
+    color: var(--ink-faint);
+    margin: 0 0.4em;
+  }
+</style>

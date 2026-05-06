@@ -1,0 +1,52 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="About"
+  description="About Concepts & Ascents and the writer behind it."
+>
+  <article class="about">
+    <h1 class="essay-title">About</h1>
+
+    <hr class="essay-rule" />
+
+    <div class="essay-body">
+      <p>
+        <em>Concepts &amp; Ascents</em> is a venue for short essays at the intersection
+        of metaphysics, philosophy of religion, and the contemplative traditions.
+        The questions taken up here are old: the structure of reality, the relation
+        of unity to multiplicity, the soul's ascent to the One, and the long conversation
+        between Greek philosophy and the revealed traditions that drew it forward.
+      </p>
+
+      <p>
+        It is written by <strong>Rashad Abdulsalam</strong>, who reads in the
+        Neoplatonic and Akbarian lineages — Plotinus, Ibn ʿArabī,
+        al‑Ghazālī, and their contemporary interpreters. He is based in
+        Florida.
+      </p>
+
+      <p>
+        The aim is modest: to organize a body of thought slowly, in public, and
+        in writing that is precise rather than ornamented.
+      </p>
+
+      <hr />
+
+      <p class="contact">
+        Correspondence is welcome at <a href="mailto:hello@conceptsandascents.com"
+          >hello@conceptsandascents.com</a
+        >.
+      </p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .about .contact {
+    text-indent: 0;
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+</style>

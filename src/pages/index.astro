@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const essays = (await getCollection('essays', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}
+---
+
+<BaseLayout showTagline={true}>
+  <section class="essays-list">
+    <ol>
+      {
+        essays.map((essay) => (
+          <li>
+            <article class="entry">
+              <time datetime={essay.data.date.toISOString()}>
+                {formatDate(essay.data.date)}
+              </time>
+              <h2>
+                <a href={`/essays/${essay.id}/`}>{essay.data.title}</a>
+              </h2>
+              {essay.data.subtitle && (
+                <p class="subtitle">{essay.data.subtitle}</p>
+              )}
+            </article>
+          </li>
+        ))
+      }
+    </ol>
+    {
+      essays.length === 0 && (
+        <p class="empty">
+          <em>No essays yet. Forthcoming.</em>
+        </p>
+      )
+    }
+  </section>
+</BaseLayout>
+
+<style>
+  .essays-list ol {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .essays-list li {
+    padding: 1.5em 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .essays-list li:last-child {
+    border-bottom: none;
+  }
+
+  .entry time {
+    display: block;
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    font-size: 0.9rem;
+    margin-bottom: 0.4em;
+  }
+
+  .entry h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.005em;
+  }
+
+  .entry h2 a {
+    color: var(--ink);
+    text-decoration: none;
+  }
+
+  .entry h2 a:hover {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .entry .subtitle {
+    margin: 0.4em 0 0;
+    color: var(--ink-soft);
+    font-style: italic;
+    font-size: 1.05rem;
+    line-height: 1.4;
+  }
+
+  .empty {
+    text-align: center;
+    color: var(--ink-soft);
+    padding: 3em 0;
+  }
+</style>

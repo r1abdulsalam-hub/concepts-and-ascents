@@ -1,0 +1,45 @@
+---
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  date: Date;
+  description?: string;
+}
+
+const { title, subtitle, date, description } = Astro.props;
+
+const formattedDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+const isoDate = date.toISOString();
+---
+
+<BaseLayout
+  title={title}
+  description={description ?? subtitle ?? `An essay by Rashad Abdulsalam.`}
+  ogType="article"
+  publishDate={date}
+>
+  <article>
+    <div class="essay-meta">
+      <time datetime={isoDate}>{formattedDate}</time>
+      <h1 class="essay-title">{title}</h1>
+      {subtitle && <p class="essay-subtitle">{subtitle}</p>}
+    </div>
+
+    <hr class="essay-rule" />
+
+    <div class="essay-body">
+      <slot />
+    </div>
+
+    <div class="essay-footer">
+      <a href="/">← Return to essays</a>
+    </div>
+  </article>
+</BaseLayout>

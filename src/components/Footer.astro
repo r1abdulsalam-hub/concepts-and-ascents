@@ -1,0 +1,62 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p class="colophon">
+      <span class="cipher">⁂</span>
+      <span class="copyright">&copy; {year} Rashad Abdulsalam</span>
+      <span class="dot" aria-hidden="true">·</span>
+      <a href="/rss.xml">RSS</a>
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    margin-top: 6em;
+    padding: 3em 0 2em;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+  }
+
+  .footer-inner {
+    width: 100%;
+    max-width: var(--measure);
+    margin: 0 auto;
+    padding: 0 var(--space-page-x);
+  }
+
+  .colophon {
+    font-variant-caps: all-small-caps;
+    letter-spacing: 0.18em;
+    color: var(--ink-faint);
+    font-size: 0.9rem;
+    margin: 0;
+    line-height: 2;
+  }
+
+  .colophon a {
+    color: var(--ink-faint);
+    text-decoration: none;
+  }
+
+  .colophon a:hover {
+    color: var(--accent);
+  }
+
+  .cipher {
+    display: block;
+    font-variant-caps: normal;
+    letter-spacing: 0.5em;
+    color: var(--ink-faint);
+    margin-bottom: 0.6em;
+    font-size: 1.1em;
+  }
+
+  .dot {
+    margin: 0 0.4em;
+    color: var(--ink-faint);
+  }
+</style>

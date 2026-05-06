@@ -1,0 +1,381 @@
+/* =============================================================
+   Concepts & Ascents — global styles
+   Editorial typography, single column, paper-and-ink palette.
+   ============================================================= */
+
+/* ----- Font: EB Garamond (with small caps and italic) -------- */
+
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&display=swap');
+
+/* ----- Design tokens ----------------------------------------- */
+
+:root {
+  /* Light palette — paper and ink */
+  --paper: #faf7f0;
+  --ink: #1f1a14;
+  --ink-soft: #4a4239;
+  --ink-faint: #8a8073;
+  --rule: #d8cfbe;
+  --accent: #6b2737;
+  --accent-soft: #8a3a48;
+
+  /* Type */
+  --font-serif: 'EB Garamond', 'Adobe Garamond Pro', 'Garamond', 'Georgia',
+    serif;
+  --font-size-base: 1.225rem;
+  --line-height-base: 1.65;
+  --measure: 36rem; /* ~64–66 characters at this size */
+
+  /* Spacing */
+  --space-page-y: clamp(2rem, 5vw, 4.5rem);
+  --space-page-x: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+/* ----- Reset & base ------------------------------------------ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  font-feature-settings: 'kern', 'liga', 'onum';
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  width: 100%;
+}
+
+/* Selection — match the accent */
+::selection {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+/* ----- Page container ---------------------------------------- */
+
+.page {
+  width: 100%;
+  max-width: var(--measure);
+  margin: 0 auto;
+  padding: var(--space-page-y) var(--space-page-x);
+}
+
+/* ----- Links ------------------------------------------------- */
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 0.5px;
+  transition: color 0.15s ease;
+}
+
+a:hover {
+  color: var(--accent-soft);
+  text-decoration: underline;
+  text-decoration-color: currentColor;
+}
+
+/* ----- Small-caps section labels ----------------------------- */
+
+.label {
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  color: var(--ink-soft);
+  font-size: 0.95em;
+}
+
+/* ----- Headings ---------------------------------------------- */
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+h1 {
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  margin: 0;
+}
+
+h2 {
+  font-size: 1.45rem;
+  margin-top: 2.5em;
+  margin-bottom: 0.6em;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-top: 2em;
+  margin-bottom: 0.5em;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* ----- Article body ------------------------------------------ */
+
+.essay-body {
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+}
+
+.essay-body p {
+  margin: 0 0 1.1em;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+}
+
+.essay-body p + p {
+  text-indent: 1.5em;
+  margin-top: 0;
+}
+
+/* Drop cap on the first paragraph after the article meta */
+.essay-body > p:first-of-type::first-letter {
+  initial-letter: 2.55;
+  -webkit-initial-letter: 2.55;
+  font-weight: 500;
+  margin-right: 0.08em;
+  color: var(--ink);
+  font-feature-settings: 'lnum';
+}
+
+/* No drop cap if the first child is a heading */
+.essay-body > h2:first-child + p::first-letter,
+.essay-body > h3:first-child + p::first-letter {
+  initial-letter: unset;
+  -webkit-initial-letter: unset;
+  font-size: inherit;
+  margin-right: 0;
+}
+
+/* Don't indent the first paragraph */
+.essay-body > p:first-of-type {
+  text-indent: 0;
+}
+
+/* Indent paragraphs after headings — actually no, don't */
+.essay-body h2 + p,
+.essay-body h3 + p {
+  text-indent: 0;
+}
+
+/* ----- Emphasis & inline ------------------------------------ */
+
+.essay-body em,
+.essay-body i {
+  font-style: italic;
+}
+
+.essay-body strong,
+.essay-body b {
+  font-weight: 600;
+}
+
+.essay-body code {
+  font-family: 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  font-size: 0.94em;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* ----- Blockquotes ------------------------------------------- */
+
+.essay-body blockquote {
+  margin: 1.6em 0 1.6em 1em;
+  padding-left: 1.2em;
+  border-left: 1px solid var(--rule);
+  color: var(--ink-soft);
+  font-style: italic;
+}
+
+.essay-body blockquote p:first-child {
+  text-indent: 0;
+}
+
+.essay-body blockquote em {
+  font-style: normal;
+}
+
+/* ----- Lists ------------------------------------------------- */
+
+.essay-body ul,
+.essay-body ol {
+  margin: 1.2em 0;
+  padding-left: 1.6em;
+}
+
+.essay-body li {
+  margin: 0.4em 0;
+}
+
+.essay-body li::marker {
+  color: var(--ink-faint);
+}
+
+/* ----- Section break: asterism ------------------------------- */
+
+.essay-body hr {
+  border: none;
+  text-align: center;
+  margin: 2.5em 0;
+  height: 1.5em;
+}
+
+.essay-body hr::before {
+  content: '⁂';
+  font-size: 1.4em;
+  color: var(--ink-faint);
+  letter-spacing: 0.5em;
+}
+
+/* ----- Footnotes (markdown footnote syntax) ------------------ */
+
+.essay-body sup {
+  font-size: 0.7em;
+  vertical-align: super;
+  line-height: 0;
+}
+
+.essay-body sup a {
+  color: var(--accent);
+  text-decoration: none;
+  padding: 0 0.1em;
+}
+
+.essay-body .footnotes {
+  margin-top: 4em;
+  padding-top: 1.5em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.92em;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+.essay-body .footnotes h2,
+.essay-body .footnotes-heading,
+.essay-body .footnotes::before {
+  /* hide the auto-generated "Footnotes" heading; use our own marker */
+  display: none;
+}
+
+.essay-body .footnotes::before {
+  content: 'Notes';
+  display: block;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  color: var(--ink-soft);
+  margin-bottom: 1em;
+  font-size: 1em;
+}
+
+.essay-body .footnotes ol {
+  padding-left: 1.4em;
+}
+
+.essay-body .footnotes li {
+  margin: 0.5em 0;
+}
+
+.essay-body .footnotes li p {
+  margin: 0;
+  text-indent: 0;
+}
+
+/* ----- Pull quotes (custom) ---------------------------------- */
+
+.essay-body .pullquote {
+  font-size: 1.4em;
+  line-height: 1.35;
+  margin: 1.8em 0;
+  padding: 0.4em 1em;
+  font-style: italic;
+  color: var(--ink-soft);
+  border: none;
+  text-align: center;
+}
+
+/* ----- Article meta block ------------------------------------ */
+
+.essay-meta {
+  margin-bottom: 2em;
+  text-align: left;
+}
+
+.essay-meta time {
+  display: block;
+  font-variant-caps: all-small-caps;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  margin-bottom: 1em;
+  font-size: 0.9em;
+}
+
+.essay-title {
+  font-size: clamp(2rem, 4.5vw, 2.75rem);
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0 0 0.4em;
+  letter-spacing: -0.005em;
+}
+
+.essay-subtitle {
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin: 0 0 1em;
+  line-height: 1.4;
+}
+
+.essay-rule {
+  border: none;
+  height: 1px;
+  background: var(--rule);
+  margin: 2em 0 2.5em;
+}
+
+/* ----- Footer (post-article navigation) ---------------------- */
+
+.essay-footer {
+  margin-top: 5em;
+  padding-top: 2em;
+  border-top: 1px solid var(--rule);
+  font-size: 0.95em;
+  color: var(--ink-soft);
+}
+
+.essay-footer a {
+  color: var(--ink-soft);
+}
+
+.essay-footer a:hover {
+  color: var(--accent);
+}
