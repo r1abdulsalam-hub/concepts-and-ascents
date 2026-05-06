@@ -72,7 +72,7 @@ src/
 
 - One typeface throughout: **EB Garamond** (loaded from Google Fonts).
 - Single column, max-width set to ~65 characters.
-- Light/dark palette switches automatically with system preference.
+- Warm paper-and-ink palette, light only.
 - Drop cap on the first paragraph.
 - All-caps small labels for section markers.
 - Asterism (⁂) for section breaks.
