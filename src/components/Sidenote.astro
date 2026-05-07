@@ -1,0 +1,7 @@
+---
+const id = `sn-${Math.random().toString(36).slice(2, 10)}`;
+---
+
+<label for={id} class="sidenote-toggle" aria-label="Toggle sidenote"></label>
+<input id={id} type="checkbox" class="sidenote-checkbox" />
+<span class="sidenote"><slot /></span>
