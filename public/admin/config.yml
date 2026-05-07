@@ -1,0 +1,53 @@
+backend:
+  name: github
+  repo: r1abdulsalam-hub/concepts-and-ascents
+  branch: main
+
+site_url: https://conceptsandascents.com
+display_url: https://conceptsandascents.com
+logo_url: https://conceptsandascents.com/og-image.png
+
+publish_mode: simple
+
+media_folder: public/images
+public_folder: /images
+
+collections:
+  - name: essays
+    label: Essays
+    label_singular: Essay
+    folder: src/content/essays
+    create: true
+    delete: true
+    extension: mdx
+    format: yaml-frontmatter
+    slug: '{{slug}}'
+    summary: '{{title}} — {{date | date("YYYY-MM-DD")}}'
+    sortable_fields: [date, title]
+    view_filters:
+      - label: Drafts
+        field: draft
+        pattern: true
+      - label: Published
+        field: draft
+        pattern: false
+    editor:
+      preview: false
+    fields:
+      - { name: title, label: Title, widget: string, required: true }
+      - { name: subtitle, label: Subtitle, widget: string, required: false, hint: 'Optional. Set in italic beneath the title.' }
+      - name: date
+        label: Date
+        widget: datetime
+        required: true
+        date_format: YYYY-MM-DD
+        time_format: false
+        format: YYYY-MM-DD
+        picker_utc: true
+      - { name: description, label: Description, widget: string, required: false, hint: 'Used for meta tags and the RSS feed. Keep to ~1 sentence.' }
+      - { name: draft, label: Draft, widget: boolean, required: false, default: false, hint: 'Drafts are excluded from the archive, RSS feed, and sitemap.' }
+      - name: body
+        label: Body
+        widget: markdown
+        required: true
+        hint: 'Standard Markdown. Use --- on its own line for an asterism (⁂) section break. Footnote syntax [^1] works inline. JSX components like <Sidenote> are not editable here — add them by editing the file directly in GitHub after publishing.'

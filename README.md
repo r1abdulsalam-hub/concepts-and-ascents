@@ -84,6 +84,21 @@ To adjust colors, typography, or spacing, edit the CSS variables at the top of `
 
 Push to GitHub. Connect the repo to Vercel. Set the production domain to `conceptsandascents.com`.
 
+## Writing essays through the browser
+
+A small CMS is mounted at [`/admin/`](https://conceptsandascents.com/admin/) (powered by [Sveltia CMS](https://github.com/sveltia/sveltia-cms)). It commits new `.mdx` files to this repository on save, which triggers a Vercel rebuild — the site itself stays fully static.
+
+**Sign in.** Click *Sign in with Token* and paste a GitHub fine-grained Personal Access Token scoped to this repository with **Contents: Read and write** permission. Generate one at <https://github.com/settings/personal-access-tokens/new>. The token lives in browser localStorage; it never reaches the site or any third party.
+
+**Authoring notes.**
+
+- The CMS edits standard Markdown frontmatter and body. JSX components (e.g. `<Sidenote>`) are not editable here — write the prose in the CMS, then add components by editing the file directly in GitHub afterward.
+- For an asterism (⁂) section break, type `---` on its own line — same as in any essay file.
+- Footnote syntax `[^1]` works inline as expected.
+- Set *Draft* to `true` while writing; flip to `false` to publish. Drafts are excluded from the archive, RSS feed, and sitemap.
+
+The admin config lives in [`public/admin/config.yml`](public/admin/config.yml). Edit it to add fields, change the slug template, or adjust widgets.
+
 ## License
 
 The code in this repository is © Rashad Abdulsalam. Essay content is © Rashad Abdulsalam unless otherwise noted.
