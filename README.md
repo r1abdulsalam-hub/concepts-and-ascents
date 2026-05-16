@@ -86,18 +86,20 @@ Push to GitHub. Connect the repo to Vercel. Set the production domain to `concep
 
 ## Writing essays through the browser
 
-A small CMS is mounted at [`/admin/`](https://conceptsandascents.com/admin/) (powered by [Sveltia CMS](https://github.com/sveltia/sveltia-cms)). It commits new `.mdx` files to this repository on save, which triggers a Vercel rebuild — the site itself stays fully static.
+The site has a small custom admin at [`/admin/`](https://conceptsandascents.com/admin/) — a regular Astro page styled like the rest of the site. It accepts a new essay through a form and commits the resulting `.mdx` file to this repository, which triggers a Vercel rebuild. The site itself stays fully static; the admin page just talks to the GitHub API from your browser.
 
-**Sign in.** Click *Sign in with Token* and paste a GitHub fine-grained Personal Access Token scoped to this repository with **Contents: Read and write** permission. Generate one at <https://github.com/settings/personal-access-tokens/new>. The token lives in browser localStorage; it never reaches the site or any third party.
+**Sign in.** Paste a GitHub fine-grained Personal Access Token scoped to this repository with **Contents: Read and write** permission. Generate one at <https://github.com/settings/personal-access-tokens/new>. The token lives in browser localStorage; it never reaches the site or any third party.
 
 **Authoring notes.**
 
-- The CMS edits standard Markdown frontmatter and body. JSX components (e.g. `<Sidenote>`) are not editable here — write the prose in the CMS, then add components by editing the file directly in GitHub afterward.
-- For an asterism (⁂) section break, type `---` on its own line — same as in any essay file.
-- Footnote syntax `[^1]` works inline as expected.
-- Set *Draft* to `true` while writing; flip to `false` to publish. Drafts are excluded from the archive, RSS feed, and sitemap.
+- The body is plain Markdown — same syntax used in any `.mdx` file. A live preview pane renders alongside the editor in roughly the published typography.
+- For an asterism (⁂) section break, type `---` on its own line.
+- Footnotes use `[^1]` inline with `[^1]: footnote text` at the bottom.
+- For Tufte-style margin notes, write `<Sidenote>note text</Sidenote>` inline.
+- The *Draft* toggle is on by default. Drafts are excluded from the archive, RSS feed, and sitemap until you uncheck it.
+- The slug (and so the URL) is derived from the title. Two essays with the same title would collide; the admin will refuse rather than overwrite.
 
-The admin config lives in [`public/admin/config.yml`](public/admin/config.yml). Edit it to add fields, change the slug template, or adjust widgets.
+The admin source lives in [`src/pages/admin.astro`](src/pages/admin.astro). Edit the form, fields, or styling there.
 
 ## License
 
